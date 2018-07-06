@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import API from "./components/utils/API";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import SavedArticles from "./components/SavedArticles";
