@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import API from "./components/utils/API";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -10,8 +9,12 @@ import './App.css';
 class App extends Component {
 
 state = {
-   stSavedArticles = [],
-   articleSearch = "",
+   stSavedArticles: [],
+   articleSearch: "",
+   startYear: "",
+   endYear: "",
+   searchTerm: "",
+   numRecords: ""
 };
 
 
@@ -23,18 +26,37 @@ handleInputChange = event => {
 };
 
 handleFormSubmit = event => {
+
+  console.log("this function ran")
   event.preventDefault();
-  API.getArticles(this.state.articleSearch)
-  .then(res => this.setState( {stSavedArticles: res.data} ) 
-  .catch(err => console.log(err));
-};
+  API.getArticles(this.state.searchTerm)
+  .then(res => this.setState( {stSavedArticles: res.data} ))
+  .catch(err => console.log(err))
+
+}
+
+componentDidUpdate(){
+  console.log(this.state);
+}
+
+componentDidMount(){
+  console.log(this.state);
+}
 
 
   render() {
     return (
       <div className="App">
             <Header />
-            <Search />
+            <Search 
+              handleInputChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmit}
+              searchTerm={this.searchTerm}
+              startYear={this.startYear}
+              endYear={this.endYear}
+              numRecords={this.numRecords}
+            
+            />
             <TopArticles />
             <SavedArticles />
       {/* <style>

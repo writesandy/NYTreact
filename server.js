@@ -17,9 +17,11 @@ if (process.env.NODE_ENV === "production") {
 // // Add routes, both API and view
 app.use(routes);
 
+mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/nytreact"
+  process.env.MONGODB_URI || "mongodb://localhost:27017/nytreact"
+
 );
 
 //Send request to React App
