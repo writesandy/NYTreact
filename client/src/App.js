@@ -29,8 +29,16 @@ handleFormSubmit = event => {
 
   console.log("this function ran")
   event.preventDefault();
-  API.getArticles(this.state.searchTerm)
-  .then(res => this.setState( {stSavedArticles: res.data} ))
+
+  API.getArticles({
+    q: this.state.searchTerm,
+    start_year: this.state.startYear,
+    end_year: this.state.endYear
+  })
+  .then(res => {
+    console.log(res);
+    this.setState( {stSavedArticles: res.data} )
+    })
   .catch(err => console.log(err))
 
 }
